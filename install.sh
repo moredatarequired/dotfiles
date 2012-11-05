@@ -10,3 +10,5 @@ apt-get install curl
 curl -L https://github.com/bbatsov/prelude/raw/master/utils/installer.sh | sh
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 chsh -s /bin/zsh
+apt-get install xmonad dmenu
+ln -s ~/.dotfiles/.gconf/apps/gnome-terminal/profiles/Default/%gconf.xml ~/.gconf/apps/gnome-terminal/profiles/Default/%gconf.xml
