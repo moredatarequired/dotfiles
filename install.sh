@@ -19,19 +19,23 @@ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | 
 
 git config --global user.name "Hugh Wimberly"
 git config --global user.email "hugh.wimberly@gmail.com"
-git clone git@github.com:moredatarequired/dotfiles.git .dotfiles
+REPO="${HOME}/.dotfiles"
+git clone git@github.com:moredatarequired/dotfiles.git ${REPO}
+
+fun replace_with_symlink () {
+    PATH=$1
+    rm ${HOME}/${PATH}
+    mkdir -p ${HOME}/${PATH}
+    ln -s ${REPO}/${PATH} ${HOME}/${PATH}
+}
 
 # Replace the default profile for gnome-terminal with a zenburn color scheme.
-rm ~/.gconf/apps/gnome-terminal/profiles/Default/%gconf.xml
-mkdir -p ~/.gconf/apps/gnome-terminal/profiles/Default
-ln -s ~/.dotfiles/.gconf/apps/gnome-terminal/profiles/Default/%gconf.xml ~/.gconf/apps/gnome-terminal/profiles/Default/%gconf.xml
+replace_with_symlink .gconf/apps/gnome-terminal/profiles/Default/%gconf.xml
+replace_with_symlink .bashrc
+replace_with_symlink .zshrc
+replace_with_symlink .Xmodmap
+replace_with_symlink .xinitrc
+replace_with_symlink .Xresources
+replace_with_symlink .xsession
 
-# As well as all the other standard dotfiles.
-rm ~/.bashrc
-ln -s ~/.dotfiles/.bashrc ~/.bashrc
-rm ~/.zshrc
-ln -s ~/.dotfiles/.zshrc ~/.zshrc
-rm ~/.Xmodmap
-ln -s ~/.dotfiles/.Xmodmap ~/.Xmodmap
-rm ~/.xinitrc
-ln -s ~/.dotfiles/.xinitrc ~/.xinitrc
+
