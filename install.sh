@@ -3,7 +3,7 @@
 set -e
 
 # Install the fish shell
-sudo apt-get install fish
+sudo apt-get -y install fish
 
 # Make fish the default shell
 echo $(which fish) | sudo tee -a /etc/shells
@@ -23,7 +23,7 @@ set -U VIRTUAL_ENV_DISABLE_PROMPT 1
 
 
 # Install personal cli utilities
-sudo apt-get install tldr exa
+sudo apt-get -y install tldr exa
 
 # Run tldr for the first time
 tldr - > /dev/null
